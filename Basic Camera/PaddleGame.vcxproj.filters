@@ -40,7 +40,9 @@
     <ClCompile Include="Ball.cpp">
       <Filter>Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="GUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -82,7 +84,9 @@
     <ClInclude Include="Ball.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="GUI.h" />
+    <ClInclude Include="GUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Winmain">
@@ -108,6 +112,9 @@
     </Filter>
     <Filter Include="Game Objects">
       <UniqueIdentifier>{3b809f8b-1a7f-41a5-af2c-107adcca7abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{4aaa2bda-8809-42ff-9fb0-e0f6c95a0863}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

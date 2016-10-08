@@ -16,6 +16,7 @@ public:
 
 	void GameEnd();
 
+
 protected:
 	int nCmdShow;
 

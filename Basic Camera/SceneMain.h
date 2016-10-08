@@ -8,6 +8,7 @@
 #include "Paddle.h"
 #include "Ball.h"
 #include "GUI.h"
+#include "GCamera.h"
 class SceneMain: public CGame
 {
 public: 	
@@ -23,6 +24,9 @@ public:
 	RECT rTimer;
 	void InitLabels();
 	void CountTime();
+
+	GCamera *camera;
+	int width, height;
 protected:	
 
 	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
