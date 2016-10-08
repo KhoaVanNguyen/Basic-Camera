@@ -127,5 +127,8 @@
     <Image Include="paddle.bmp">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="bubbles-bg2.png">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

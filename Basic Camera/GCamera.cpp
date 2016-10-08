@@ -54,10 +54,8 @@ void GCamera::UpdateCamera(int &w, int &h)
 void GCamera::Update() {
 	int cameraX = this->weight / 2;
 	int cameraY = this->height / 2;
-	if (this->followingObject) {
-		cameraX = this->followingObject->x;
-		cameraY = this->followingObject->y;
-	}
+		cameraX = this->followingObject.x;
+		cameraY = this->followingObject.y;
 	this->viewMatrix = D3DXMATRIX(
 		scaleFactors.x * cos(angle), scaleFactors.x * sin(angle), 0, 0,
 		-scaleFactors.y * sin(angle), scaleFactors.y * cos(angle), 0, 0,
@@ -65,7 +63,7 @@ void GCamera::Update() {
 		-cameraX * scaleFactors.x * cos(angle) + cameraY * scaleFactors.y * sin(angle), -cameraX * scaleFactors.y * sin(angle) - cameraY * scaleFactors.y * cos(angle), 0, 1
 	);
 }
-void GCamera::Follow(GameObject *gameObject) {
+void GCamera::Follow(GameObject gameObject) {
 	this->followingObject = gameObject;
 }
 void GCamera::SetTransform(LPDIRECT3DDEVICE9 d3ddev) {

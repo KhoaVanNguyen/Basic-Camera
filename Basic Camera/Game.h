@@ -4,7 +4,7 @@
 #include <d3d9.h>
 #include "Global.h"
 #include <dinput.h>
-
+#include "GCamera.h"
 class CGame
 {
 public:
@@ -16,6 +16,8 @@ public:
 
 	void GameEnd();
 
+	GCamera *camera;
+	int width, height;
 
 protected:
 	int nCmdShow;

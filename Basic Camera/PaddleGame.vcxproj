@@ -121,6 +121,7 @@
   <ItemGroup>
     <Image Include="background.jpg" />
     <Image Include="ball.bmp" />
+    <Image Include="bubbles-bg2.png" />
     <Image Include="paddle.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

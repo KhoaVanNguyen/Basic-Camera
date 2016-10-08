@@ -3,7 +3,7 @@
 int start = 0;
 void SceneMain::CountTime() {
 		if (GetTickCount() - start > 1000) {
-			totalTime++;
+			//totalTime++;
 			start = GetTickCount();
 		}
 }
@@ -13,15 +13,13 @@ void DrawBackground(LPDIRECT3DDEVICE9 d3ddv) {
 	d3ddv->StretchRect(background, NULL, G_BackBuffer, NULL, D3DTEXF_NONE);
 }
 void SceneMain::InitLabels() {
-	totalTime = 0;
+	
 	gui.Init();
 
 	SetRect(&rScore1, 0, 0, 200, 400);
 	SetRect(&rScore2, G_ScreenWidth - 50, 0, G_ScreenWidth, 50);
 	SetRect(&rTimer, (G_ScreenWidth / 2 ) - 100, 0, ( G_ScreenWidth / 2 ) + 100, 50);
-	gui.DrawLabel("0", rScore1, DT_LEFT);
-	gui.DrawLabel("0", rScore2, DT_RIGHT);
-	gui.DrawLabel(to_string(totalTime) + " s", rTimer, DT_CENTER);
+	
 }
 SceneMain::SceneMain(int _nCmdShow): CGame(_nCmdShow)
 {
@@ -29,16 +27,18 @@ SceneMain::SceneMain(int _nCmdShow): CGame(_nCmdShow)
 }
 void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 {
-	CountTime();
 	//DrawBackground(d3ddv);
-	d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 12));
-	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+	//d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 12));
+	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND );
 
-	
+	bg2.Draw();
 
 	ball.Draw();
 	
-
+	if (camera)
+	{
+		//camera->SetTransform(d3ddv);
+	}
 
 
 	G_SpriteHandler->End();
@@ -46,6 +46,10 @@ void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 
 void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 {
+	if (camera) {
+		camera->Follow(ball);
+		camera->Update();
+	}
 		
 	if (IsKeyDown(DIK_UPARROW)) {
 		ball.y -= 5;
@@ -60,14 +64,17 @@ void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 		ball.x += 5;
 	}
 	
+	
 
 }
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 {
 	srand(time(NULL));
-	//DrawBackground(d3ddv);
-	
-	
+	DrawBackground(d3ddv);
+
+	bg2.Init("bubbles-bg2.png",1,1,1);
+	bg2.x = 100;
+	bg2.y = 25;
 
 	ball.Init("ball.bmp", 1, 1, 1);
 	ball.InitPosition();

@@ -16,7 +16,7 @@ private:
 	D3DXMATRIX identityMatrix;
 	D3DMATRIX viewMatrix;
 
-	GameObject *followingObject;
+	GameObject followingObject;
 public:
 	D3DXVECTOR2 viewport;		//Thiết lập tọa độ của camera	
 	int _maxSize, _minSize;
@@ -34,7 +34,7 @@ public:
 	
 	// function
 	void Update();
-	void Follow(GameObject*);
+	void Follow(GameObject);
 	void Unfollow(GameObject*);
 	void SetTransform(LPDIRECT3DDEVICE9);
 };

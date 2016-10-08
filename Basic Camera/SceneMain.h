@@ -16,8 +16,7 @@ public:
 	~SceneMain();	
 
 	Ball ball;
-	Paddle leftPaddle, rightPaddle;
-	int score1, score2, totalTime;
+	GameObject bg2;
 	GUI gui;
 	RECT rScore1;
 	RECT rScore2;
@@ -25,8 +24,7 @@ public:
 	void InitLabels();
 	void CountTime();
 
-	GCamera *camera;
-	int width, height;
+
 protected:	
 
 	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
