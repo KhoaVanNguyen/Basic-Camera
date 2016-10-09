@@ -42,9 +42,11 @@ void GameObject::Move() {
 
 }
 void GameObject::InitPosition() {
-
+	initialized = true;
 }
-
+bool GameObject::IsInitialized() {
+	return initialized;
+}
 int GameObject::X() {
 	return x;
 }

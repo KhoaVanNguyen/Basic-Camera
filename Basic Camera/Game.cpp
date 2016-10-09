@@ -91,7 +91,7 @@ int CGame::InitDirectX()
 	}
 
 	// camera
-	camera = new GCamera(400, 200, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
+	camera = new GCamera(G_ScreenWidth, G_ScreenHeight, 0, DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f));
 	//backbuffer
 
 	G_Device->GetBackBuffer(0,0,D3DBACKBUFFER_TYPE_MONO,&G_BackBuffer);
@@ -315,7 +315,10 @@ void CGame::GameEnd()
 {
 	if (G_Device!=NULL) G_Device->Release();
 	if (G_DirectX!=NULL) G_DirectX->Release();
-	if (camera != NULL) delete camera;
+	if (camera != NULL) {
+		delete camera;
+		camera = nullptr;
+	}
 }
 
 LRESULT CALLBACK CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

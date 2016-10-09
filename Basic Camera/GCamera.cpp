@@ -6,7 +6,7 @@ GCamera::GCamera()
 	viewport.y = G_ScreenHeight;
 }
 GCamera::GCamera(int width, int heigt, float angle, DirectX::XMFLOAT3 scaleFactors) {
-	this->weight = width;
+	this->width = width;
 	this->height = height;
 	this->angle = angle;
 	this->scaleFactors = scaleFactors;
@@ -52,10 +52,13 @@ void GCamera::UpdateCamera(int &w, int &h)
 	//Tự viết dự vào hướng dẫn của GV LT
 }
 void GCamera::Update() {
-	int cameraX = this->weight / 2;
-	int cameraY = this->height / 2;
-		cameraX = this->followingObject.x;
-		cameraY = this->followingObject.y;
+	int cameraX = this->width / 2, cameraY = this->height / 2;
+	if (this->followingObject && this->followingObject->IsInitialized())
+	{
+		cameraX = this->followingObject->x;
+		cameraY = this->followingObject->y;
+	}
+
 	this->viewMatrix = D3DXMATRIX(
 		scaleFactors.x * cos(angle), scaleFactors.x * sin(angle), 0, 0,
 		-scaleFactors.y * sin(angle), scaleFactors.y * cos(angle), 0, 0,
@@ -63,11 +66,19 @@ void GCamera::Update() {
 		-cameraX * scaleFactors.x * cos(angle) + cameraY * scaleFactors.y * sin(angle), -cameraX * scaleFactors.y * sin(angle) - cameraY * scaleFactors.y * cos(angle), 0, 1
 	);
 }
-void GCamera::Follow(GameObject gameObject) {
+void GCamera::Follow(GameObject *gameObject) {
 	this->followingObject = gameObject;
+}
+void GCamera::Unfollow() {
+	this->followingObject = nullptr;
+}
+bool GCamera::IsFollowing() const
+{
+	return this->followingObject != nullptr;
 }
 void GCamera::SetTransform(LPDIRECT3DDEVICE9 d3ddev) {
 	d3ddev->SetTransform(D3DTS_PROJECTION, &orthographicMatrix);
 	d3ddev->SetTransform(D3DTS_WORLD, &identityMatrix);
 	d3ddev->SetTransform(D3DTS_VIEW, &viewMatrix);	
+
 }

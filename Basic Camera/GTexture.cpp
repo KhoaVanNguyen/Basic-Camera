@@ -28,6 +28,7 @@ GTexture::~GTexture()
 {
 	if(this->Texture != NULL)
 		this->Texture->Release();
+	delete this->FileName;
 }
 
 void GTexture::DrawAt(int x, int y) 

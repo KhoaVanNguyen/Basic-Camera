@@ -10,13 +10,13 @@ class GCamera
 private:
 	float angle;
 	int height;
-	int weight;
+	int width;
 	DirectX::XMFLOAT3 scaleFactors;
 	D3DXMATRIX orthographicMatrix;
 	D3DXMATRIX identityMatrix;
 	D3DMATRIX viewMatrix;
 
-	GameObject followingObject;
+	GameObject *followingObject;
 public:
 	D3DXVECTOR2 viewport;		//Thiết lập tọa độ của camera	
 	int _maxSize, _minSize;
@@ -34,8 +34,9 @@ public:
 	
 	// function
 	void Update();
-	void Follow(GameObject);
-	void Unfollow(GameObject*);
+	void Follow(GameObject *following);
+	void Unfollow();
+	bool IsFollowing() const;
 	void SetTransform(LPDIRECT3DDEVICE9);
 };
 

@@ -15,8 +15,8 @@ public:
 	SceneMain(int _nCmdShow);
 	~SceneMain();	
 
-	Ball ball;
-	GameObject bg2;
+	Ball *ball;
+	GameObject *bg2;
 	GUI gui;
 	RECT rScore1;
 	RECT rScore2;

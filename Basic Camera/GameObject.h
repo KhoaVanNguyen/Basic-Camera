@@ -6,7 +6,10 @@ protected:
 
 	virtual void Move();
 	virtual void InitPosition();
+	
 public:
+	virtual bool IsInitialized();
+	bool initialized;
 	int x, y;
 	int width, height;
 	int movex, movey;

@@ -60,3 +60,6 @@ void Ball::ResetPosition()
 	y = G_ScreenHeight / 2;
 	movex *= -1;
 }
+bool Ball::IsInitialized() {
+	return initialized;
+}

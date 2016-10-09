@@ -27,57 +27,59 @@ SceneMain::SceneMain(int _nCmdShow): CGame(_nCmdShow)
 }
 void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 {
-	//DrawBackground(d3ddv);
-	//d3ddv->ColorFill(G_BackBuffer, NULL, D3DCOLOR_XRGB(0, 0, 12));
-	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND );
-
-	bg2.Draw();
-
-	ball.Draw();
 	
+	d3ddv->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0,100,100), 1.0f, 0);
+
 	if (camera)
 	{
-		//camera->SetTransform(d3ddv);
+		camera->SetTransform(d3ddv);
 	}
-
-
+	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
+	if (bg2 && bg2->IsInitialized()) {
+		
+		bg2->Init("bubbles-bg2.png", 1, 1, 1);
+		bg2->x = 0;
+		bg2->y = 0;
+		bg2->Draw();
+	}
+	if (ball && ball->IsInitialized()) {
+		ball->Init("ball.bmp", 1, 1, 1);
+		ball->InitPosition();
+		ball->Draw();
+	}
 	G_SpriteHandler->End();
 }
 
 void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 {
-	if (camera) {
-		camera->Follow(ball);
+	if (camera)
+	{
+		if (!camera->IsFollowing())
+		{
+			camera->Follow(ball);
+		}
 		camera->Update();
 	}
-		
 	if (IsKeyDown(DIK_UPARROW)) {
-		ball.y -= 5;
+		ball->y -= 5;
 	}
 	if (IsKeyDown(DIK_DOWNARROW)) {
-		ball.y += 5;
+		ball->y += 5;
 	}
 	if (IsKeyDown(DIK_LEFTARROW)) {
-		ball.x -= 5;
+		ball->x -= 5;
 	}
 	if (IsKeyDown(DIK_RIGHTARROW)) {
-		ball.x += 5;
+		ball->x += 5;
 	}
-	
-	
-
 }
 void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 {
 	srand(time(NULL));
-	DrawBackground(d3ddv);
-
-	bg2.Init("bubbles-bg2.png",1,1,1);
-	bg2.x = 100;
-	bg2.y = 25;
-
-	ball.Init("ball.bmp", 1, 1, 1);
-	ball.InitPosition();
+	
+	bg2 = new GameObject();
+	ball = new Ball();
+	
 	
 }
 void SceneMain::OnKeyDown(int KeyCode)
