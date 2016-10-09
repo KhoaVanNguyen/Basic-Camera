@@ -1,9 +1,12 @@
 ﻿#include "GCamera.h"
 
-GCamera::GCamera()
-{
-	viewport.x = 1;
-	viewport.y = G_ScreenHeight;
+//GCamera::GCamera()
+//{
+//	/*viewport.x = 1;
+//	viewport.y = G_ScreenHeight;*/
+//}
+GCamera::~GCamera() {
+
 }
 GCamera::GCamera(int width, int heigt, float angle, DirectX::XMFLOAT3 scaleFactors) {
 	this->width = width;
@@ -42,11 +45,6 @@ D3DXVECTOR3 GCamera::CenterSprite(int x, int y)
 	return pCenter;
 }
 
-void GCamera::UpdateCamera(int x)
-{
-	//Tự viết dự vào hướng dẫn của GV LT
-}
-
 void GCamera::UpdateCamera(int &w, int &h)
 {
 	//Tự viết dự vào hướng dẫn của GV LT
@@ -76,7 +74,7 @@ bool GCamera::IsFollowing() const
 {
 	return this->followingObject != nullptr;
 }
-void GCamera::SetTransform(LPDIRECT3DDEVICE9 d3ddev) {
+void GCamera::SetTransform(LPDIRECT3DDEVICE9 d3ddev) const {
 	d3ddev->SetTransform(D3DTS_PROJECTION, &orthographicMatrix);
 	d3ddev->SetTransform(D3DTS_WORLD, &identityMatrix);
 	d3ddev->SetTransform(D3DTS_VIEW, &viewMatrix);	

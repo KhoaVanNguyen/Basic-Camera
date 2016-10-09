@@ -34,19 +34,9 @@ void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 	{
 		camera->SetTransform(d3ddv);
 	}
-	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
-	if (bg2 && bg2->IsInitialized()) {
-		
-		bg2->Init("bubbles-bg2.png", 1, 1, 1);
-		bg2->x = 0;
-		bg2->y = 0;
+	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND );
 		bg2->Draw();
-	}
-	if (ball && ball->IsInitialized()) {
-		ball->Init("ball.bmp", 1, 1, 1);
-		ball->InitPosition();
 		ball->Draw();
-	}
 	G_SpriteHandler->End();
 }
 
@@ -78,7 +68,12 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 	srand(time(NULL));
 	
 	bg2 = new GameObject();
+	bg2->Init("dog.jpg", 1, 1, 1);
+	bg2->x = 600;
+	bg2->y = 400;
 	ball = new Ball();
+	ball->Init("ball.bmp", 1, 1, 1);
+	ball->InitPosition();
 	
 	
 }

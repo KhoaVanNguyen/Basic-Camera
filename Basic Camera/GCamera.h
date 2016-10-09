@@ -21,12 +21,12 @@ public:
 	D3DXVECTOR2 viewport;		//Thiết lập tọa độ của camera	
 	int _maxSize, _minSize;
 
-	GCamera();
+	//GCamera();
 	GCamera(int width, int height, float angle, DirectX::XMFLOAT3);
-
+	~GCamera();
 
 	D3DXVECTOR3 CenterSprite(int x, int y);	//Tìm tọa độ center của sprite
-	void UpdateCamera(int x);		
+
 	void UpdateCamera(int &w, int &h);
 	
 	void SetSizeMap(int _max, int _min);
@@ -37,7 +37,7 @@ public:
 	void Follow(GameObject *following);
 	void Unfollow();
 	bool IsFollowing() const;
-	void SetTransform(LPDIRECT3DDEVICE9);
+	void SetTransform(LPDIRECT3DDEVICE9) const;
 };
 
 #endif

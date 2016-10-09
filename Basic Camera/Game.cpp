@@ -280,12 +280,13 @@ void CGame::RenderFrame()
 		RenderFrame(G_Device, _DeltaTime);
 		G_Device->EndScene();
 	}
+//	G_Device->EndScene();
 	G_Device->Present(NULL,NULL,NULL,NULL);
 }
 
 void CGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int Delta) 
 {
-	d3ddv->ColorFill(G_BackBuffer,NULL,D3DCOLOR_XRGB(0,0,0));
+	//d3ddv->ColorFill(G_BackBuffer,NULL,D3DCOLOR_XRGB(0,0,0));
 }
 void CGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) { }
 
